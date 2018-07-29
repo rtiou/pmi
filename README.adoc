@@ -22,12 +22,12 @@ This section describes this project architecture and design.
 .Packages structure and content
 [source,yaml]
 ----
-nl.zamro.pmi // <1>
-nl.zamro.pmi.controller // <2>
-nl.zamro.pmi.domain // <3>
-nl.zamro.pmi.jpa // <4>
-nl.zamro.pmi.mapper // <5>
-nl.zamro.pmi.service // <6>
+com.ronaldotiou.pmi // <1>
+com.ronaldotiou.pmi.controller // <2>
+com.ronaldotiou.pmi.domain // <3>
+com.ronaldotiou.pmi.jpa // <4>
+com.ronaldotiou.pmi.mapper // <5>
+com.ronaldotiou.pmi.service // <6>
 ----
 <1> Root package stores the StartUp class
 <2> All the controller classes.
