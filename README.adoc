@@ -1,0 +1,70 @@
+= Simple PMI - Product information management
+Ronaldo Tiou <ronaldotiou@gmail.com>
+:toc:
+:summary: Simple bot implementation to perform some trading operations.
+
+== Overview
+This application is a simple PMI implementation to perform some actions.
+
+== Architecture & Design
+This section describes this project architecture and design.
+
+=== Technology Stack & Requirements
+
+ * link:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java 8]
+ * link:https://projects.spring.io/spring-boot/[Spring Boot]
+ * link:http://mapstruct.org/[Mapstruct]
+ * link:http://projectlombok.org/features/index.html[Project Lombok]
+ * link:https://maven.apache.org[Maven]
+
+
+=== Packages
+.Packages structure and content
+[source,yaml]
+----
+nl.zamro.pmi // <1>
+nl.zamro.pmi.controller // <2>
+nl.zamro.pmi.domain // <3>
+nl.zamro.pmi.jpa // <4>
+nl.zamro.pmi.mapper // <5>
+nl.zamro.pmi.service // <6>
+----
+<1> Root package stores the StartUp class
+<2> All the controller classes.
+<3> All the domain classes.
+<4> All the data model used in the application such as the REST API response and the storage layer.
+<5> All interfaces to mapping the Product and Category
+<6> Services and Handlers that execute the crud operations.
+
+=== Configuration properties
+The current implementation favors convention over configuration and is designed to get you up and running as quickly
+as possible
+
+== Build & Run
+This section describes how to build and run the application.
+Run the following commands in the root folder of the project.
+
+.Build
+[source,bash]
+----
+$ ./mvn clean package
+----
+
+.Run
+[source,bash]
+----
+$ java -jar target/pmi.jar
+----
+
+[IMPORTANT]
+====
+ * By default the application will be running in the port *8080*.
+====
+
+=== Adding Project Lombok Agent
+This project uses link:http://projectlombok.org/features/index.html[Project Lombok]
+to generate getters and setters etc. Compiling from the command line this
+shouldn't cause any problems, but in an IDE you need to add an agent
+to the JVM. Full instructions can be found in the Lombok website. The
+sign that you need to do this is a lot of compiler errors to do with
+missing methods and fields.

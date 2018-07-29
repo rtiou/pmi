@@ -1,0 +1,241 @@
+#%RAML 1.0
+---
+title: PMI API
+baseUri: http://localhost:8080/
+
+/product:
+  /{productId}:
+    get:
+      description: Retrieve a single product
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "zamroID": "110CBB",
+                  "name": "Zwenkwiel met rem LKRA-VPA 101G-FI-FA-GS12",
+                  "description": "<STRONG>Serie: LKRA-VPA, BKRA-VPA, LKRA-VGA, BKRA-VGA</STRONG><br /><br />Apparatenwielen met boutgat, wiel met massieve rubberen band.<br /><br />Behuizing: serie LKRA/BKRA - Geperst plaatstaal, zwenkbehuizing met dubbele kogellagering in de draaikrans,",
+                  "minOrderQuantity": 1,
+                  "unitOfMeasure": "PCE",
+                  "categoryId": "66394",
+                  "purchasePrice": 69.63,
+                  "available": 0
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "timestamp": "2018-07-29T12:34:42.327+0000",
+                  "status": 404,
+                  "error": "Not Found",
+                  "message": "ProductId s not found",
+                  "path": "/product/s"
+                }
+    delete:
+      description: Delete a single Product
+      responses:
+        200:
+        404:
+          body:
+            appliction/json:
+              example: |
+                {
+                  "timestamp": "2018-07-29T12:34:42.327+0000",
+                  "status": 404,
+                  "error": "Not Found",
+                  "message": "ProductId s not found",
+                  "path": "/product/s"
+                }
+    put:
+      description: Update a product
+      body:
+        application/json:
+          example: |
+            {
+              "zamroID": "83626",
+              "name": "Spanplaten DIN 6316 11x100mm",
+              "description": "Spanplaat, haaks gebogen: <br /> Uitvoering: DIN 6313, van temperstaal, gelakt. Met vlakparallel span- en oplegvlak. Toepassing: spanplaat kan met verschillende spanonderleggers worden gecombineerd en daardoor aan verschillende werkstukvormen en -grootte",
+              "minOrderQuantity": 1,
+              "unitOfMeasure": "PCE",
+              "categoryId": "52280",
+              "purchasePrice": 17.92,
+              "available": 0
+            }
+      responses:
+        200:
+          body:
+            application/sjon:
+              example: |
+                {
+                  "zamroID": "83626",
+                  "name": "Spanplaten DIN 6316 11x100mm",
+                  "description": "Spanplaat, haaks gebogen: <br /> Uitvoering: DIN 6313, van temperstaal, gelakt. Met vlakparallel span- en oplegvlak. Toepassing: spanplaat kan met verschillende spanonderleggers worden gecombineerd en daardoor aan verschillende werkstukvormen en -grootte",
+                  "minOrderQuantity": 1,
+                  "unitOfMeasure": "PCE",
+                  "categoryId": "52280",
+                  "purchasePrice": 17.92,
+                  "available": 0
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "timestamp": "2018-07-29T12:46:42.973+0000",
+                  "status": 404,
+                  "error": "Not Found",
+                  "message": "ProductId 83622 not found",
+                  "path": "/product/83622"
+                }
+  /download:
+    get:
+      description: Download the result of Product search
+      queryParameters:
+        field:
+          description: Field to do the query
+          type:        text
+          required:    true
+          example:     name
+        value:
+          description: The value to check in the database
+          type:        text
+          example:     Spanplaten DIN 6316 11x100mm
+
+  /upload:
+    post:
+      description: Upload a file with Products
+      responses:
+        200:
+        404:
+  get:
+    description: Retrieve all Products
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "zamroID": "110CBB",
+                  "name": "Zwenkwiel met rem LKRA-VPA 101G-FI-FA-GS12",
+                  "description": "<STRONG>Serie: LKRA-VPA, BKRA-VPA, LKRA-VGA, BKRA-VGA</STRONG><br /><br />Apparatenwielen met boutgat, wiel met massieve rubberen band.<br /><br />Behuizing: serie LKRA/BKRA - Geperst plaatstaal, zwenkbehuizing met dubbele kogellagering in de draaikrans,",
+                  "minOrderQuantity": 1,
+                  "unitOfMeasure": "PCE",
+                  "categoryId": "66394",
+                  "purchasePrice": 69.63,
+                  "available": 0
+                },
+                {
+                  "zamroID": "110CBB",
+                  "name": "Zwenkwiel met rem LKRA-VPA 101G-FI-FA-GS12",
+                  "description": "<STRONG>Serie: LKRA-VPA, BKRA-VPA, LKRA-VGA, BKRA-VGA</STRONG><br /><br />Apparatenwielen met boutgat, wiel met massieve rubberen band.<br /><br />Behuizing: serie LKRA/BKRA - Geperst plaatstaal, zwenkbehuizing met dubbele kogellagering in de draaikrans,",
+                  "minOrderQuantity": 1,
+                  "unitOfMeasure": "PCE",
+                  "categoryId": "66394",
+                  "purchasePrice": 69.63,
+                  "available": 1
+                }
+              ]
+  post:
+    description: Add a new Product
+    body:
+      application/json:
+        example: |
+          {
+            "zamroID": "83626",
+            "name": "Spanplaten DIN 6316 11x100mm",
+            "description": null,
+            "minOrderQuantity": 100,
+            "unitOfMeasure": null,
+            "categoryId":  "48622",
+            "purchasePrice": 0,
+            "available": 1
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "zamroID": "110CBB",
+                "name": "Zwenkwiel met rem LKRA-VPA 101G-FI-FA-GS12",
+                "description": "<STRONG>Serie: LKRA-VPA, BKRA-VPA, LKRA-VGA, BKRA-VGA</STRONG><br /><br />Apparatenwielen met boutgat, wiel met massieve rubberen band.<br /><br />Behuizing: serie LKRA/BKRA - Geperst plaatstaal, zwenkbehuizing met dubbele kogellagering in de draaikrans,",
+                "minOrderQuantity": 1,
+                "unitOfMeasure": "PCE",
+                "categoryId": "66394",
+                "purchasePrice": 69.63,
+                "available": 0
+              }
+
+/category:
+  get:
+    description: Retrieve all categories
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "categoryID": "48622",
+                  "name": "Decoupeerzagen en recipro zaagbladen"
+                },
+                {
+                  "categoryID": "52280",
+                  "name": "Mofkoppeling"
+                }
+              ]
+      404:
+  /{categoryId}:
+    get:
+      description: Retrieve a single category
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "categoryID": "48622",
+                  "name": "Decoupeerzagen en recipro zaagbladen"
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "timestamp": "2018-07-29T12:34:42.327+0000",
+                  "status": 404,
+                  "error": "Not Found",
+                  "message": "CategoryId s not found",
+                  "path": "/category/s"
+                }
+    delete:
+      description: Delete a single category
+      responses:
+        200:
+        404:
+    put:
+      description: Update a category
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "categoryID": "48622",
+                  "name": "Decoupeerzagen en recipro zaagbladen"
+                }
+        404:
+  post:
+    description: Create a single category
+    responses:
+      200:
+      404:
+  /upload:
+    post:
+      description: Upload a file with Products
+      responses:
+        200:
+        404:
